@@ -1,0 +1,32 @@
+name: CI/CD Pipeline
+
+# Trigger on push to main branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout your code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2️⃣ Set up Docker build
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # 3️⃣ Build API Gateway Docker image
+      - name: Build API Gateway image
+        run: docker build -t api-gateway:latest ./services/api-gateway
+
+      # 4️⃣ Build Orders Service Docker image
+      - name: Build Orders Service image
+        run: docker build -t orders-service:latest ./services/orders-service
+
+      # 5️⃣ Deploy to Kubernetes
+      - name: Deploy to Kubernetes
+        run: kubectl apply -f k8s/
