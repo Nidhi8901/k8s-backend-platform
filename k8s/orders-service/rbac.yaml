@@ -1,0 +1,23 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: orders-service-role
+  namespace: backend-platform
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services"]
+  verbs: ["get", "list"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: orders-service-binding
+  namespace: backend-platform
+subjects:
+- kind: ServiceAccount
+  name: orders-service-sa
+roleRef:
+  kind: Role
+  name: orders-service-role
+  apiGroup: rbac.authorization.k8s.io
