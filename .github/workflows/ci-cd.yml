@@ -23,11 +23,12 @@ jobs:
         with:
           context: ./services/api-gateway
           push: true
-          tags: nidhi8900/api-gateway:latest
+          tags: nidhi8901/api-gateway:latest
 
       - name: Build and push Orders Service
         uses: docker/build-push-action@v5
         with:
           context: ./services/orders-service
           push: true
-          tags: nidhi8900/orders-service:latest
+          tags: nidhi8901/orders-service:latest
+
