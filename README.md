@@ -21,7 +21,6 @@ The pipeline automatically builds and pushes Docker images whenever code is push
 
 ---
 
-## ⚙️ Project Structure
 k8s-backend-platform/
 ├── services/
 │ ├── api-gateway/
